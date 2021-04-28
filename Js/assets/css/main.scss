@@ -1,0 +1,11 @@
+@import "fonts";
+@import "navbar";
+
+.show-p {
+    display: block;
+    z-index: 100;
+}
+.dropdown-content {
+    display: none;
+    z-index: 100;
+}
