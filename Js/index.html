@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css"
+      integrity="sha384-wESLQ85D6gbsF459vf1CiZ2+rr+CsxRY0RpiF1tLlQpDnAgg6rwdsUF1+Ics2bni"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="node_modules/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <nav class="bg-gray-50 py-5 px-5 flex items-center justify-between shadow">
+      <div class="navbar__div--left">
+        <h2 class="text-gray-500 text-xl font-roboto select-none">
+          Lista de pendientes
+        </h2>
+      </div>
+      <div
+        class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+      >
+        <div class="relative dropdown">
+          <div class="flex items-center">
+            <h3 class="mx-3 font-roboto text-gray-500 select-none">
+              ¡Bienvenido/a al panel!
+            </h3>
+            <button
+              type="button"
+              class="btndrop bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+              id="user-menu-button"
+              aria-expanded="false"
+              aria-haspopup="true"
+              onclick="panelPerfil()"
+            >
+              <span class="sr-only">Abrir menú de usuario</span>
+              <img
+                class="h-8 w-8 rounded-full"
+                src="https://images.unsplash.com/photo-1552900144-5a8ca71fd614?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                alt=""
+              />
+            </button>
+          </div>
+
+          <div
+            class="dropdown-content origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            role="menu"
+            id="panel-p"
+            aria-orientation="vertical"
+            aria-labelledby="user-menu-button"
+            tabindex="-1"
+          >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 cursor-not-allowed hover:bg-gray-50"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-0"
+              >Tú perfil</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 cursor-not-allowed hover:bg-gray-50"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-1"
+              >Configuraciones</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-red-200 hover:text-red-900"
+              role="menuitem"
+              tabindex="-1"
+              id="user-menu-item-2"
+              >Salir</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="flex flex-col mx-10 my-5">
+      <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div
+            class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+          >
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Pendiente y encargado
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Descripción y lugar
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Fecha
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Prioridad
+                  </th>
+                  <th scope="col" class="relative px-6 py-3">
+                    <span class="sr-only">Editar</span>
+                    <span class="sr-only">Eliminar</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr class="select-none hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="w-2 bg-blue-300 h-12 mr-3"></div>
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img
+                          class="h-10 w-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60"
+                          alt=""
+                        />
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          Sacar la basura
+                        </div>
+                        <div class="text-sm text-gray-500">Jane Smith</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      Sacar la basura de toda la casa y recoger papeles.
+                    </div>
+                    <div class="text-sm text-gray-500">Casa</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    12/12/2021
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
+                      Normal
+                    </span>
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  >
+                    <a
+                      href="#"
+                      class="text-indigo-600 hover:text-indigo-900 mx-1"
+                      >Editar</a
+                    >
+                    <a href="#" class="text-red-600 hover:text-red-900 mx-1"
+                      >Eliminar</a
+                    >
+                  </td>
+                </tr>
+
+                <tr class="select-none hover:bg-gray-50">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="w-2 bg-yellow-300 h-12 mr-3"></div>
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img
+                          class="h-10 w-10 rounded-full"
+                          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                          alt=""
+                        />
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">
+                          Ir de compras
+                        </div>
+                        <div class="text-sm text-gray-500">Alard Franco</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      Comprar comida para el perro.
+                    </div>
+                    <div class="text-sm text-gray-500">Supermercado</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    01/04/2021
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                    >
+                      Urgente
+                    </span>
+                  </td>
+                  <td
+                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  >
+                    <a
+                      href="#"
+                      class="text-indigo-600 hover:text-indigo-900 mx-1"
+                      >Editar</a
+                    >
+                    <a href="#" class="text-red-600 hover:text-red-900 mx-1"
+                      >Eliminar</a
+                    >
+                  </td>
+                </tr>
+
+                <!-- Más pendientes... -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Paginación -->
+
+      <div
+        class="bg-white px-4 py-3 flex items-center justify-between border-gray-200 sm:px-6"
+      >
+        <div class="flex-1 flex justify-between sm:hidden">
+          <a
+            href="#"
+            class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+          >
+            Anterior
+          </a>
+          <a
+            href="#"
+            class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500"
+          >
+            Siguiente
+          </a>
+        </div>
+        <div
+          class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
+        >
+          <div class="select-none">
+            <p class="text-sm text-gray-700">
+              Mostrando
+              <span class="font-medium">1</span>
+              -
+              <span class="font-medium">10</span>
+              de
+              <span class="font-medium">97</span>
+              resultados
+            </p>
+          </div>
+          <div>
+            <nav
+              class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+              aria-label="Pagination"
+            >
+              <a
+                href="#"
+                class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span class="sr-only">Anterior</span>
+                <!-- Heroicon name: solid/chevron-left -->
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                1
+              </a>
+              <a
+                href="#"
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                2
+              </a>
+              <a
+                href="#"
+                class="hidden md:inline-flex relative items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                3
+              </a>
+              <span
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 select-none"
+              >
+                ...
+              </span>
+              <a
+                href="#"
+                class="hidden md:inline-flex relative items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                8
+              </a>
+              <a
+                href="#"
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                9
+              </a>
+              <a
+                href="#"
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                10
+              </a>
+              <a
+                href="#"
+                class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              >
+                <span class="sr-only">Siguiente</span>
+                <!-- Heroicon name: solid/chevron-right -->
+                <svg
+                  class="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/actions_css.js"></script>
+  </body>
+</html>
